@@ -48,7 +48,7 @@ app.delete('/deletecard/:id', async (req, res) => {
     const {id} = req.params;
     try{
         let connection = await mysql.createConnection(dbConfig);
-        await connection.execute('DELETE FROM cards WHERE id=' , [id]);
+        await connection.execute('DELETE FROM cards WHERE id= ?' + id);
         res.status(201).json({message: 'Card'+ id+ 'delted successfully'});
     }catch (err) {
         console.error(err);
